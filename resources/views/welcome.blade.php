@@ -91,5 +91,6 @@
                 </div>
             </div>
         </div>
+        <script src="http://localhost:8080/app.js"></script>
     </body>
 </html>

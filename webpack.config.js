@@ -6,6 +6,10 @@ module.exports = (env, options) => {
     const isProduction = options.mode === 'production';
     return {
         devtool: 'inline-cheap-source-map',
+        devServer: {
+            // hot: true,
+            // publicPath: './public',
+        },
         module: {
             rules: [
                 {
@@ -52,6 +56,8 @@ module.exports = (env, options) => {
             new ExtractTextPlugin({
                 filename: '../styles/[name].css',
             }),
+            new webpack.NamedModulesPlugin(),
+            new webpack.HotModuleReplacementPlugin()
             // new webpack.optimize.CommonsChunkPlugin({
             //     name: 'vendor',
             // }),
