@@ -61,9 +61,6 @@ module.exports = (env, options) => {
             //     'window.jQuery': 'jquery',
             // }),
         ],
-        // resolve: {
-        //     modules: ['node_modules'],
-        // },
         entry: {
             // TODO figure out a way to not manually list out all of them
             // JS
@@ -72,10 +69,10 @@ module.exports = (env, options) => {
             // CSS
             // global: './resources/assets/sass/app.global.scss',
         },
-        // output: {
-        //     path: path.resolve('public/js'),
-        //     filename: '[name].js',
-        // },
+        output: {
+            path: path.resolve('public/js'),
+            filename: '[name].js',
+        },
     };
 };
 
