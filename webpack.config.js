@@ -75,11 +75,3 @@ module.exports = (env, options) => {
         },
     };
 };
-
-// module.exports = {
-//     entry: './resources/assets/js/app.js',
-//     output: {
-//         filename: 'app.js',
-//         path: path.resolve(__dirname, 'public/js/')
-//     }
-// };

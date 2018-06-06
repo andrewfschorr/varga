@@ -1,7 +1,8 @@
 {
     "private": true,
     "scripts": {
-        "dev": "webpack --watch --mode development"
+        "dev": "webpack --watch --mode development",
+        "prod": "webpack --mode production"
     },
     "devDependencies": {
         "babel-core": "^6.26.3",
