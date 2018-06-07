@@ -3,6 +3,17 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const webpack = require('webpack');
 const fs = require('fs');
 
+function HelloWorldPlugin(options) {
+    // Setup the plugin instance with options...
+}
+
+HelloWorldPlugin.prototype.apply = function(compiler) {
+    compiler.plugin('done', function() {
+        console.log('Hello KJGDFJGDSFJGSDFWorld!');
+    });
+};
+
+
 module.exports = (env, options) => {
     const isProduction = options.mode === 'production';
     const sccUseOpts = (options.hot) ? [
@@ -59,7 +70,8 @@ module.exports = (env, options) => {
                 filename: './css/[name].css',
             }),
             new webpack.NamedModulesPlugin(),
-            new webpack.HotModuleReplacementPlugin()
+            new webpack.HotModuleReplacementPlugin(),
+            new HelloWorldPlugin({options: true}),
         ],
         entry: {
             app: [
