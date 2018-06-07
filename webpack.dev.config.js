@@ -4,6 +4,7 @@ const webpack = require('webpack');
 const fs = require('fs');
 
 
+
 module.exports = (env, options) => {
     const isProduction = options.mode === 'production';
     const sccUseOpts = (options.hot) ? [
@@ -25,14 +26,19 @@ module.exports = (env, options) => {
         ],
     });
 
+    const plugins = [
+        new ExtractTextPlugin({
+            filename: './css/[name].css',
+        }),
+        new webpack.NamedModulesPlugin(),
+        new webpack.HotModuleReplacementPlugin(),
+    ];
+
     return {
         devtool: 'inline-cheap-source-map',
         devServer: {
             hot: true,
             contentBase: path.resolve(__dirname, 'public'),
-            proxy: {
-                '/js': 'http://localhost:8080',
-            }
         },
         module: {
             rules: [
@@ -51,11 +57,7 @@ module.exports = (env, options) => {
             ]
         },
         plugins: [
-            new ExtractTextPlugin({
-                filename: './css/[name].css',
-            }),
-            new webpack.NamedModulesPlugin(),
-            new webpack.HotModuleReplacementPlugin(),
+           ...plugins
         ],
         entry: {
             app: [
