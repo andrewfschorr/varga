@@ -1,9 +1,8 @@
 {
     "private": true,
     "scripts": {
-        "dev": "webpack --watch --mode development",
-        "prod": "webpack --mode production",
-        "hot": "cross-env node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --mode development"
+        "dev": "webpack --mode development --watch --config webpack.dev.config.js",
+        "hot": "webpack-dev-server --mode development --config webpack.dev.config.js --hot"
     },
     "devDependencies": {
         "babel-core": "^6.26.3",

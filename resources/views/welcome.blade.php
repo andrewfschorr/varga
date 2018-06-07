@@ -14,7 +14,6 @@
         <style>
             html, body {
                 background-color: #fff;
-                color: #636b6f;
                 font-family: 'Raleway', sans-serif;
                 font-weight: 100;
                 height: 100vh;
@@ -91,6 +90,6 @@
                 </div>
             </div>
         </div>
-        <script src="http://localhost:8080/app.js"></script>
+        <script src="http://localhost:8080/js/app.js"></script>
     </body>
 </html>

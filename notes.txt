@@ -1,0 +1,7 @@
+tail -f storage/logs/laravel.log
+
+php artisan route:list
+
+/vendor/laravel/framework/src/Illuminate/Routing/Router.php
+
+App\Post::with('tags')->all();
