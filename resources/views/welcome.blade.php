@@ -1,7 +1,7 @@
 
 @extends('layouts.varga')
 @section('pageStyle')
-<script src="{{ asset('css/splash.css') }}" ></script>
+<link href="{{ hawtHelper('css/splash.css') }}" rel="stylesheet">
 @endsection
 
 
@@ -11,5 +11,5 @@
 </div>
 @endsection
 @section('pageScript')
-<script src="{{ asset('js/splash.js') }}" ></script>
+<script src="{{ hawtHelper('js/splash.js') }}" ></script>
 @endsection

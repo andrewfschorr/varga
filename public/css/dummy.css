@@ -1,0 +1,2 @@
+/* This file is needed for hot reloading so the CSS can be injected via the JS
+That way we can return something for the HTML to req in hawtHelper */

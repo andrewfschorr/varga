@@ -11,8 +11,8 @@
         var {{ config($dataBs) }} = {!! json_encode($dataBs) !!};
     </script>
     @endisset
-    <script src="{{ mix('js/app.js') }}" ></script>
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <script src="{{ hawtHelper('js/app.js') }}" ></script>
+    <link href="{{ hawtHelper('css/app.css') }}" rel="stylesheet">
     @yield('pageStyle')
 </head>
 <body>

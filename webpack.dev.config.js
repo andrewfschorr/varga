@@ -63,13 +63,13 @@ module.exports = (env, options) => {
         ],
         entry: {
             app: './resources/assets/app',
-            splash: './resources/assets/splash',
+            splash: './resources/assets/welcome',
         },
         output: {
             path: path.resolve(__dirname, 'public'),
             filename: 'js/[name].js',
-            hotUpdateChunkFilename: 'hot-update/hot-update.js',
-            hotUpdateMainFilename: 'hot-update/hot-update.json'
+            // hotUpdateChunkFilename: 'hot-update/hot-update.js',
+            // hotUpdateMainFilename: 'hot-update/hot-update.json'
         },
     };
 };

@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('splash');
+    return view('welcome');
 });
 
 Route::get('/foo', 'FooController@index');
