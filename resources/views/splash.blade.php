@@ -1,7 +1,7 @@
 
 @extends('layouts.varga')
 @section('pageStyle')
-<script src="{{ mix('js/splash.js') }}" ></script>
+<script src="{{ asset('css/splash.css') }}" ></script>
 @endsection
 
 
@@ -11,5 +11,5 @@
 </div>
 @endsection
 @section('pageScript')
-<p>this is the page script</p>
+<script src="{{ asset('js/splash.js') }}" ></script>
 @endsection
