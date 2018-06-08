@@ -12,8 +12,10 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('splash');
 });
+
+Route::get('/foo', 'FooController@index');
 
 Auth::routes();
 

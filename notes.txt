@@ -5,3 +5,6 @@ php artisan route:list
 /vendor/laravel/framework/src/Illuminate/Routing/Router.php
 
 App\Post::with('tags')->all();
+
+"jquery": "^3.3.1",
+"jquery-slim": "^3.0.0",

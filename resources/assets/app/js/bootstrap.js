@@ -1,4 +1,5 @@
 
+import React from 'react';
 window._ = require('lodash');
 // window.Popper = require('popper').default;
 // console.log(Popper);
@@ -9,8 +10,8 @@ window._ = require('lodash');
  */
 
 try {
-    window.$ = window.jQuery = require('jquery');
-    require('bootstrap');
+    // window.$ = window.jQuery = require('jquery-slim');
+    // require('bootstrap');
 } catch (e) {}
 
 /**

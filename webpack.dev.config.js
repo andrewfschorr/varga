@@ -1,8 +1,7 @@
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const webpack = require('webpack');
-const fs = require('fs');
-
+const laravelWatchHawtness = require('./build/laravel-detect-hawtness');
 
 
 module.exports = (env, options) => {
@@ -30,8 +29,11 @@ module.exports = (env, options) => {
         new ExtractTextPlugin({
             filename: './css/[name].css',
         }),
-        new webpack.NamedModulesPlugin(),
+        // new webpack.NamedModulesPlugin(),
         new webpack.HotModuleReplacementPlugin(),
+        new laravelWatchHawtness({
+            isHot: options.hot,
+        }),
     ];
 
     return {
@@ -60,13 +62,14 @@ module.exports = (env, options) => {
            ...plugins
         ],
         entry: {
-            app: [
-                './resources/assets/app', // index.js
-            ],
+            app: './resources/assets/app',
+            splash: './resources/assets/splash',
         },
         output: {
             path: path.resolve(__dirname, 'public'),
             filename: 'js/[name].js',
+            hotUpdateChunkFilename: 'hot-update/hot-update.js',
+            hotUpdateMainFilename: 'hot-update/hot-update.json'
         },
     };
 };
