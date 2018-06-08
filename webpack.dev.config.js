@@ -1,8 +1,8 @@
 const path = require('path');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const laravelWatchHawtness = require('./build/laravel-detect-hawtness');
-
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = (env, options) => {
     const isProduction = options.mode === 'production';
@@ -17,6 +17,9 @@ module.exports = (env, options) => {
                 loader: 'css-loader',
                 options: {
                     minimize: isProduction,
+                    importLoader: 1,
+                    modules: true,
+                    localIdentName: '[name]_[local]__[hash:base64:5]'
                 },
             },
             {
@@ -29,17 +32,20 @@ module.exports = (env, options) => {
         new ExtractTextPlugin({
             filename: './css/[name].css',
         }),
-        // new webpack.NamedModulesPlugin(),
-        new webpack.HotModuleReplacementPlugin(),
+        new webpack.NamedModulesPlugin(),
+        // new webpack.HotModuleReplacementPlugin(),
         new laravelWatchHawtness({
             isHot: options.hot,
         }),
+        // new BundleAnalyzerPlugin({
+        //     analyzerMode: 'static'
+        // })
     ];
 
     return {
-        devtool: 'inline-cheap-source-map',
+        devtool: isProduction ? 'none' : 'inline-cheap-source-map',
         devServer: {
-            hot: true,
+            // hot: true,
             contentBase: path.resolve(__dirname, 'public'),
         },
         module: {
@@ -55,7 +61,15 @@ module.exports = (env, options) => {
                     test: /\.scss$/,
                     use: sccUseOpts,
                 },
-
+                {
+                    // test
+                    test: /\.css$/,
+                    exclude: /node_modules/,
+                    loaders: [
+                        'style-loader',
+                        'css-loader?importLoader=1&modules&localIdentName=[path]___[name]__[local]___[hash:base64:5]'
+                    ]
+                },
             ]
         },
         plugins: [
@@ -63,7 +77,7 @@ module.exports = (env, options) => {
         ],
         entry: {
             app: './resources/assets/app',
-            splash: './resources/assets/welcome',
+            welcome: './resources/assets/welcome',
         },
         output: {
             path: path.resolve(__dirname, 'public'),

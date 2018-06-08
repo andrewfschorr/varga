@@ -10,11 +10,11 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <script src="{{ mix('js/app.js') }}" ></script>
+    <script src="{{ hawtHelper('js/app.js') }}" ></script>
 
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ hawtHelper('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">

@@ -1,5 +1,6 @@
 
 import React from 'react';
+import ReactDOM from 'react-dom';
 window._ = require('lodash');
 // window.Popper = require('popper').default;
 // console.log(Popper);

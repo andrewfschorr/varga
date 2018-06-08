@@ -6,15 +6,20 @@
     },
     "devDependencies": {
         "babel-core": "^6.26.3",
+        "babel-preset-env": "^1.7.0",
         "css-loader": "^0.28.11",
         "extract-text-webpack-plugin": "^4.0.0-beta.0",
+        "postcss-scss": "^1.0.5",
         "webpack": "^4.11.0",
+        "webpack-bundle-analyzer": "^2.13.1",
         "webpack-cli": "^3.0.2",
         "webpack-dev-server": "^3.1.4"
     },
     "dependencies": {
         "axios": "^0.18",
         "babel-loader": "^7.1.4",
+        "babel-plugin-react-css-modules": "^3.4.2",
+        "babel-preset-react": "^6.24.1",
         "bootstrap": "^4.1.1",
         "cross-env": "^5.1",
         "jquery-slim": "^3.0.0",
