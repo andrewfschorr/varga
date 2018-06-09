@@ -11,5 +11,5 @@
 </div>
 @endsection
 @section('pageScript')
-<script src="{{ hawtHelper('js/welcome.js') }}"></script>
+<script src="{{ hawtHelper('js/welcome.js') }}" defer></script>
 @endsection

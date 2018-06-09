@@ -10,11 +10,9 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <script src="{{ hawtHelper('js/app.js') }}" ></script>
-
-    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
+    <script src="{{ hawtHelper('js/app.js') }}" defer></script>
     <link href="{{ hawtHelper('css/app.css') }}" rel="stylesheet">
+    <link href="{{ hawtHelper('css/loginregister.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
@@ -71,5 +69,6 @@
             @yield('content')
         </main>
     </div>
+    <script src="{{ hawtHelper('js/loginregister.js') }}" defer></script>
 </body>
 </html>
