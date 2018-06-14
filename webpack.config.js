@@ -112,6 +112,7 @@ module.exports = (env, options) => {
             app: './resources/client/app',
             welcome: './resources/client/welcome',
             loginregister: './resources/client/loginregister',
+            home: './resources/client/home',
             // vendor: ['jquery', 'react', 'react-dom', 'lodash', 'popper.js', 'axios', 'bootstrap', 'reactstrap'],
             vendor: ['react', 'react-dom', 'lodash', 'axios', 'reactstrap'],
         },

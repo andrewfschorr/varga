@@ -7,9 +7,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name', 'Laravel') }}</title>
     @isset($dataBs)
-    <script>
-        var {{ config($dataBs) }} = {!! json_encode($dataBs) !!};
-    </script>
+    <script>var DATA_BS = {!! json_encode($dataBs) !!};</script>
     @endisset
     <link href="{{ hawtHelper('css/app.css') }}" rel="stylesheet">
     @yield('pageStyle')

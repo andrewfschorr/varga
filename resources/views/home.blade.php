@@ -1,5 +1,7 @@
-@extends('layouts.app')
-
+@extends('layouts.varga')
+@section('pageStyle')
+<!-- <link href="{{ hawtHelper('css/home.css') }}" rel="stylesheet"> -->
+@endsection
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -20,4 +22,7 @@
         </div>
     </div>
 </div>
+@endsection
+@section('pageScript')
+<script src="{{ hawtHelper('js/home.js') }}" defer></script>
 @endsection

@@ -6,5 +6,9 @@ php artisan route:list
 
 App\Post::with('tags')->all();
 
+php artisan migrate
+
+php artisan migrate:refresh
+
 "jquery": "^3.3.1",
 "jquery-slim": "^3.0.0",
