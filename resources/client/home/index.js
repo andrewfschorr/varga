@@ -1,1 +1,1 @@
-console.log(DATA_BS);
+console.log(window.DATA_BS);

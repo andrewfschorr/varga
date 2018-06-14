@@ -6,14 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name', 'Laravel') }}</title>
-    @isset($dataBs)
-    <script>var DATA_BS = {!! json_encode($dataBs) !!};</script>
-    @endisset
     <link href="{{ hawtHelper('css/app.css') }}" rel="stylesheet">
     @yield('pageStyle')
 </head>
 <body>
     @yield('content')
+    @isset($dataBs)
+    <div data-bs={!! json_encode($dataBs) !!}></div>
+    @endisset
     <script src="{{ asset('js/vendor.js') }}" defer></script>
     <script src="{{ hawtHelper('js/app.js') }}" defer></script>
     @yield('pageScript')
