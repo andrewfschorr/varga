@@ -16,3 +16,5 @@ if (dataBsEl) {
     window.DATA_BS = JSON.parse(dataBsEl.dataset.bs);
     dataBsEl.parentNode.removeChild(dataBsEl);
 }
+
+console.log('!x');

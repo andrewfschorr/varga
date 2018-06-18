@@ -67,7 +67,7 @@
             @yield('content')
         </main>
     </div>
-    <script src="{{ asset('js/vendor.js') }}" defer></script>
+    <script src="{{ hawtHelper('js/vendor.js') }}" defer></script>
     <script src="{{ hawtHelper('js/app.js') }}" defer></script>
     <script src="{{ hawtHelper('js/loginregister.js') }}" defer></script>
 </body>

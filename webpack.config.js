@@ -61,7 +61,8 @@ module.exports = (env, options) => {
     return {
         devtool: isProduction ? 'none' : 'inline-cheap-source-map',
         devServer: {
-            // hot: true,
+            hot: true,
+            publicPath: '/',
             contentBase: path.resolve(__dirname, 'public'),
         },
         resolve: {
