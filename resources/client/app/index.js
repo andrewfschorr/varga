@@ -1,3 +1,3 @@
 import 'app/bootstrap';
 import './app.global.scss';
-console.log('fuck!');
+console.log('bue!');

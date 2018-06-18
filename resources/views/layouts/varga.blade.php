@@ -14,8 +14,9 @@
     @isset($dataBs)
     <div data-bs={!! json_encode($dataBs) !!}></div>
     @endisset
-    <script src="{{ hawtHelper('js/vendor.js') }}" defer></script>
+    <!-- <script src="{{ hawtHelper('js/vendor.js') }}" defer></script>
     <script src="{{ hawtHelper('js/app.js') }}" defer></script>
-    @yield('pageScript')
+    @yield('pageScript') -->
+    <script src="{{ hawtHelper('poop.js') }}" defer></script>
 </body>
 </html>

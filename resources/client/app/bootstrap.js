@@ -17,4 +17,4 @@ if (dataBsEl) {
     dataBsEl.parentNode.removeChild(dataBsEl);
 }
 
-console.log('!x');
+console.log('!xxx');

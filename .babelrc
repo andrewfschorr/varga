@@ -1,4 +1,4 @@
 {
     "presets": [["env", {"modules": false}], "react"],
-    "plugins": ["react-css-modules"]
+    "plugins": ["react-css-modules", "react-hot-loader/babel"]
 }
