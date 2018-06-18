@@ -4,6 +4,14 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const laravelWatchHawtness = require('./build/laravel-detect-hawtness');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
+function buildEntryPoint(entryPoint) {
+    return [
+        'webpack-dev-server/client?http://localhost:8080',
+        'webpack/hot/only-dev-server',
+        entryPoint,
+    ];
+}
+
 module.exports = (env, options) => {
     const isProduction = options.mode === 'production';
 
@@ -62,8 +70,13 @@ module.exports = (env, options) => {
         devtool: isProduction ? 'none' : 'inline-cheap-source-map',
         devServer: {
             hot: true,
-            publicPath: '/',
+            publicPath: 'http://localhost:8080/',
             contentBase: path.resolve(__dirname, 'public'),
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
+                'Access-Control-Allow-Headers': 'X-Requested-With, content-type, Authorization',
+            },
         },
         resolve: {
             // modules: [
@@ -110,18 +123,19 @@ module.exports = (env, options) => {
         },
         plugins: [...plugins],
         entry: {
-            app: './resources/client/app',
-            welcome: './resources/client/welcome',
-            loginregister: './resources/client/loginregister',
-            home: './resources/client/home',
+            app: buildEntryPoint('./resources/client/app'),
+            welcome: buildEntryPoint('./resources/client/welcome'),
+            loginregister: buildEntryPoint('./resources/client/loginregister'),
+            home: buildEntryPoint('./resources/client/home'),
             // vendor: ['jquery', 'react', 'react-dom', 'lodash', 'popper.js', 'axios', 'bootstrap', 'reactstrap'],
             vendor: ['react', 'react-dom', 'lodash', 'axios', 'reactstrap'],
         },
         output: {
             path: path.resolve(__dirname, 'public'),
+            publicPath: 'http://localhost:8080/',
             filename: 'js/[name].js',
-            // hotUpdateChunkFilename: 'hot-update/hot-update.js',
-            // hotUpdateMainFilename: 'hot-update/hot-update.json'
+            // hotUpdateChunkFilename: '[name].[hash].hot-update.js',
+            // hotUpdateMainFilename: '[hash].hot-update.json',
         },
     };
 };

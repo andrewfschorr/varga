@@ -2,6 +2,9 @@ import axois from 'axios';
 
 window.axios = axois;
 
+if (module.hot) {
+  module.hot.accept()
+}
 // this should be included in every context and is the bootstrapping-app logic
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 const token = document.head.querySelector('meta[name="csrf-token"]');
@@ -17,4 +20,4 @@ if (dataBsEl) {
     dataBsEl.parentNode.removeChild(dataBsEl);
 }
 
-console.log('!x');
+console.log('!FUCKKKKKK');
