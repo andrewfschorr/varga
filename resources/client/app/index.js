@@ -3,4 +3,3 @@ if (module.hot) {
 }
 import 'app/bootstrap';
 import './app.global.scss';
-console.log('!xxxx');
