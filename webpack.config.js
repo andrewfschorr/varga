@@ -4,7 +4,11 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const laravelWatchHawtness = require('./build/laravel-detect-hawtness');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
-function buildEntryPoint(entryPoint) {
+function buildEntryPoint(entryPoint, isHot = false) {
+    if (!isHot) {
+        // TODO this sucks
+        return entryPoint;
+    }
     return [
         'webpack-dev-server/client?http://localhost:8080',
         'webpack/hot/only-dev-server',
@@ -70,7 +74,7 @@ module.exports = (env, options) => {
         devtool: isProduction ? 'none' : 'inline-cheap-source-map',
         devServer: {
             hot: true,
-            publicPath: 'http://localhost:8080/',
+            publicPath: options.hot ? 'http://localhost:8080/' : '/', // hurr
             contentBase: path.resolve(__dirname, 'public'),
             headers: {
                 'Access-Control-Allow-Origin': '*',
@@ -123,16 +127,16 @@ module.exports = (env, options) => {
         },
         plugins: [...plugins],
         entry: {
-            app: buildEntryPoint('./resources/client/app'),
-            welcome: buildEntryPoint('./resources/client/welcome'),
-            loginregister: buildEntryPoint('./resources/client/loginregister'),
-            home: buildEntryPoint('./resources/client/home'),
+            app: buildEntryPoint('./resources/client/app', options.hot),
+            welcome: buildEntryPoint('./resources/client/welcome', options.hot),
+            loginregister: buildEntryPoint('./resources/client/loginregister', options.hot),
+            home: buildEntryPoint('./resources/client/home', options.hot),
             // vendor: ['jquery', 'react', 'react-dom', 'lodash', 'popper.js', 'axios', 'bootstrap', 'reactstrap'],
             vendor: ['react', 'react-dom', 'lodash', 'axios', 'reactstrap'],
         },
         output: {
             path: path.resolve(__dirname, 'public'),
-            publicPath: 'http://localhost:8080/',
+            publicPath: options.hot ? 'http://localhost:8080/' : '/',
             filename: 'js/[name].js',
             // hotUpdateChunkFilename: '[name].[hash].hot-update.js',
             // hotUpdateMainFilename: '[hash].hot-update.json',

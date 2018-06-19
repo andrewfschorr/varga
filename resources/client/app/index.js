@@ -1,4 +1,6 @@
-__webpack_public_path__ = "http://localhost:8080/";
+if (module.hot) {
+    module.hot.accept();
+}
 import 'app/bootstrap';
 import './app.global.scss';
-console.log('hexllo!');
+console.log('!xxxx');
