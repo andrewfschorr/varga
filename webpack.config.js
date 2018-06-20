@@ -91,6 +91,7 @@ module.exports = (env, options) => {
             alias: {
                 client: path.resolve(__dirname, 'resources/client'),
                 app: path.resolve(__dirname, 'resources/client/app'),
+                components: path.resolve(__dirname, 'resources/client/components'),
             },
         },
         optimization: {
