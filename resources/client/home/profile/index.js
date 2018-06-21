@@ -9,21 +9,25 @@ class Profile extends Component {
                     <div className="card-body">
                         <form>
                             <div className="form-group">
-                                <label htmlFor="profilePhotoUpload">
-                                    ProfilePhoto
-                                </label>
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">Upload</span>
+                                <label htmlFor="profilePhotoUpload">ProfilePhoto</label>
+                                <div className="input-group mb-3">
+                                    <div className="input-group-prepend">
+                                        <span className="input-group-text">Upload</span>
                                     </div>
-                                    <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="profilePhotoUpload" />
-                                        <label class="custom-file-label" for="profilePhotoUpload">Choose file</label>
+                                    <div className="custom-file">
+                                        <input
+                                            type="file"
+                                            className="custom-file-input"
+                                            id="profilePhotoUpload"
+                                        />
+                                        <label
+                                            className="custom-file-label"
+                                            htmlFor="profilePhotoUpload">
+                                            Choose file
+                                        </label>
                                     </div>
                                 </div>
                             </div>
-
-
 
                             <div className="form-group">
                                 <label htmlFor="inputName">Username</label>
@@ -33,29 +37,26 @@ class Profile extends Component {
                                 </small>
                             </div>
                             <div className="form-group">
-                                <label htmlFor="aboutTextArea">
-                                    About me
-                                </label>
-                                <textarea
-                                    className="form-control"
-                                    id="aboutTextArea"
-                                    rows="3"
-                                />
+                                <label htmlFor="aboutTextArea">About me</label>
+                                <textarea className="form-control" id="aboutTextArea" rows="3" />
                                 <small id="aboutHelpBlock" className="form-text text-muted">
-                                    Don't be shy, 3-5 sentences about you. Your interests and expertise.
+                                    Don't be shy, 3-5 sentences about you. Your interests and
+                                    expertise.
                                 </small>
                             </div>
                             <div className="form-group">
-                                <label htmlFor="instagramUpload">
-                                    Instagram
-                                </label>
-                                <br/>
-                                <button type="button" className="btn btn-outline-primary">Connect Instagram</button>
+                                <label htmlFor="instagramUpload">Instagram</label>
+                                <br />
+                                <button type="button" className="btn btn-outline-primary">
+                                    Connect Instagram
+                                </button>
                                 <small id="aboutHelpBlock" className="form-text">
-                                    <p class="text-danger">Connect your instagram so people can see who you are!</p>
+                                    <p className="text-danger">
+                                        Connect your instagram so people can see who you are!
+                                    </p>
                                 </small>
                             </div>
-                            <br/>
+                            <br />
                             <button type="submit" className="btn btn-primary">
                                 Save
                             </button>
