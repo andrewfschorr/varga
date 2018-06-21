@@ -7,81 +7,57 @@ class Profile extends Component {
                 <div className="card">
                     <div className="card-header">Profile</div>
                     <div className="card-body">
-                        <h5 className="card-title">Special title treatment</h5>
-                        <p className="card-text">
-                            With supporting text below as a natural lead-in to additional content.
-                        </p>
-
                         <form>
-                            <div className="form-row">
-                                <div className="form-group col-md-6">
-                                    <label htmlFor="inputEmail4">Email</label>
-                                    <input
-                                        type="email"
-                                        className="form-control"
-                                        id="inputEmail4"
-                                        placeholder="Email"
-                                    />
-                                </div>
-                                <div className="form-group col-md-6">
-                                    <label htmlFor="inputPassword4">Password</label>
-                                    <input
-                                        type="password"
-                                        className="form-control"
-                                        id="inputPassword4"
-                                        placeholder="Password"
-                                    />
+                            <div className="form-group">
+                                <label htmlFor="profilePhotoUpload">
+                                    ProfilePhoto
+                                </label>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">Upload</span>
+                                    </div>
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="profilePhotoUpload" />
+                                        <label class="custom-file-label" for="profilePhotoUpload">Choose file</label>
+                                    </div>
                                 </div>
                             </div>
+
+
+
                             <div className="form-group">
-                                <label htmlFor="inputAddress">Address</label>
-                                <input
-                                    type="text"
+                                <label htmlFor="inputName">Username</label>
+                                <input type="text" className="form-control" id="name" />
+                                <small id="nameHelpBlock" className="form-text text-muted">
+                                    This is the name that will be displayed on your reviews.
+                                </small>
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="aboutTextArea">
+                                    About me
+                                </label>
+                                <textarea
                                     className="form-control"
-                                    id="inputAddress"
-                                    placeholder="1234 Main St"
+                                    id="aboutTextArea"
+                                    rows="3"
                                 />
+                                <small id="aboutHelpBlock" className="form-text text-muted">
+                                    Don't be shy, 3-5 sentences about you. Your interests and expertise.
+                                </small>
                             </div>
                             <div className="form-group">
-                                <label htmlFor="inputAddress2">Address 2</label>
-                                <input
-                                    type="text"
-                                    className="form-control"
-                                    id="inputAddress2"
-                                    placeholder="Apartment, studio, or floor"
-                                />
+                                <label htmlFor="instagramUpload">
+                                    Instagram
+                                </label>
+                                <br/>
+                                <button type="button" className="btn btn-outline-primary">Connect Instagram</button>
+                                <small id="aboutHelpBlock" className="form-text">
+                                    <p class="text-danger">Connect your instagram so people can see who you are!</p>
+                                </small>
                             </div>
-                            <div className="form-row">
-                                <div className="form-group col-md-6">
-                                    <label htmlFor="inputCity">City</label>
-                                    <input type="text" className="form-control" id="inputCity" />
-                                </div>
-                                <div className="form-group col-md-4">
-                                    <label htmlFor="inputState">State</label>
-                                    <select id="inputState" className="form-control">
-                                        <option selected>Choose...</option>
-                                        <option>...</option>
-                                    </select>
-                                </div>
-                                <div className="form-group col-md-2">
-                                    <label htmlFor="inputZip">Zip</label>
-                                    <input type="text" className="form-control" id="inputZip" />
-                                </div>
-                            </div>
-                            <div className="form-group">
-                                <div className="form-check">
-                                    <input
-                                        className="form-check-input"
-                                        type="checkbox"
-                                        id="gridCheck"
-                                    />
-                                    <label className="form-check-label" htmlFor="gridCheck">
-                                        Check me out
-                                    </label>
-                                </div>
-                            </div>
+                            <br/>
                             <button type="submit" className="btn btn-primary">
-                                Sign in
+                                Save
                             </button>
                         </form>
                     </div>

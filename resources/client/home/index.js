@@ -18,6 +18,7 @@ const App = () => (
                     <SideNavBar/>
                     <Switch>
                         <Route exact path="/home/profile" component={Profile} />
+                        <Route exact path="/home/account" component={Profile} />
                         <Route path="/home/:page" component={Name} />
                         <Redirect to="/home/profile" />
                     </Switch>

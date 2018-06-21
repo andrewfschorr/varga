@@ -10,7 +10,10 @@ const SideNavBar = props => (
             role="tablist"
             aria-orientation="vertical">
             <NavLink className="nav-link" activeClassName="active" to="/home/profile">
-                Link to A
+                Profile
+            </NavLink>
+            <NavLink className="nav-link" activeClassName="active" to="/home/account">
+                Account Settings
             </NavLink>
             <NavLink className="nav-link" activeClassName="active" to="/home/b">
                 The B Link
