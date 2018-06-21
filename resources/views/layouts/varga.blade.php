@@ -12,7 +12,9 @@
 <body>
     @yield('content')
     @isset($dataBs)
-    <div data-bs={!! json_encode($dataBs) !!}></div>
+    <script defer>
+        var DATA_BS = @json($dataBs);
+    </script>
     @endisset
     <script src="{{ hawtHelper('js/vendor.js') }}" defer></script>
     <script src="{{ hawtHelper('js/app.js') }}" defer></script>

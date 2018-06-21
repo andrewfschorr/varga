@@ -24,7 +24,8 @@ class HomeController extends Controller
     public function index()
     {
         $data = [
-            'foo' => 'bar',
+            'csrfToken' => csrf_token(),
+            'user' => \Auth::user()->toArray(),
         ];
         return view('home', [
             'dataBs' => $data,

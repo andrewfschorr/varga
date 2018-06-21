@@ -65,9 +65,9 @@ module.exports = (env, options) => {
         //     Popper: 'popper.js',
         //     axios: 'axios',
         // }),
-        new BundleAnalyzerPlugin({
-            // analyzerMode: 'static',
-        }),
+        // new BundleAnalyzerPlugin({
+        //     // analyzerMode: 'static',
+        // }),
     ];
 
     return {
@@ -124,6 +124,10 @@ module.exports = (env, options) => {
                     test: /^((?!\.global).)*\.scss$/,
                     use: cssModuleStyleOptions,
                 },
+                // {
+                //     test: /\.css$/,
+                //     use: cssModuleStyleOptions,
+                // },
             ],
         },
         plugins: [...plugins],

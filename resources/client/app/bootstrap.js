@@ -10,9 +10,3 @@ if (token) {
 } else {
     console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
-
-const dataBsEl = document.querySelector('[data-bs]');
-if (dataBsEl) {
-    window.DATA_BS = JSON.parse(dataBsEl.dataset.bs);
-    dataBsEl.parentNode.removeChild(dataBsEl);
-}

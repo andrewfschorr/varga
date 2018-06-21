@@ -19,4 +19,6 @@ Route::get('/foo', 'FooController@index');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
+Route::redirect('/home', '/home/profile', 301);
+Route::get('/home/{all}', 'HomeController@index')->name('home');

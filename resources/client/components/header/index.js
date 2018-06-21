@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink as RouterNavLink } from 'react-router-dom';
 import {
     Collapse,
     Navbar,
@@ -35,22 +36,38 @@ export default class Header extends React.Component {
                     <NavbarToggler onClick={this.toggle} />
                     <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav className="ml-auto" navbar>
-                            {/* <NavItem>
-                                <NavLink href="/components/">Components</NavLink>
-                            </NavItem>
-                            <NavItem>
-                                <NavLink href="https://github.com/reactstrap/reactstrap">
-                                    GitHub
-                                </NavLink>
-                            </NavItem> */}
                             <UncontrolledDropdown nav inNavbar>
                                 <DropdownToggle nav caret>
-                                    Name of Logged In Person
+                                    {DATA_BS.user.name}
                                 </DropdownToggle>
                                 <DropdownMenu right>
-                                    <DropdownItem tag="a" href="/account">Settings</DropdownItem>
+                                    <RouterNavLink
+                                        className="dropdown-item"
+                                        activeClassName="active"
+                                        to="/home/account">
+                                        Account Settings
+                                    </RouterNavLink>
+
                                     <DropdownItem divider />
-                                    <DropdownItem tag="a" href="/logout">Logout</DropdownItem>
+                                    <DropdownItem
+                                        tag="a"
+                                        onClick={e => {
+                                            e.preventDefault();
+                                            document.getElementById('logout-form').submit();
+                                        }}>
+                                        Logout
+                                    </DropdownItem>
+                                    <form
+                                        id="logout-form"
+                                        action="/logout"
+                                        method="POST"
+                                        style={{ display: 'none' }}>
+                                        <input
+                                            type="hidden"
+                                            name="_token"
+                                            value={DATA_BS.csrfToken}
+                                        />
+                                    </form>
                                 </DropdownMenu>
                             </UncontrolledDropdown>
                         </Nav>

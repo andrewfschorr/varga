@@ -1,4 +1,15 @@
 {
-    "presets": [["env", {"modules": false}], "react"],
-    "plugins": ["react-css-modules"]
+    "presets": [["env", { "modules": false }], "react"],
+    "plugins": [
+        [
+            "react-css-modules",
+            {
+                "filetypes": {
+                    ".scss": {
+                        "syntax": "postcss-scss"
+                    }
+                }
+            }
+        ]
+    ]
 }
