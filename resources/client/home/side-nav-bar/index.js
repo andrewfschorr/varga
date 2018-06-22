@@ -15,16 +15,16 @@ const SideNavBar = props => (
             <NavLink className="nav-link" activeClassName="active" to="/home/profile">
                 Profile
             </NavLink>
-            <NavLink className="nav-link" activeClassName="active" to="/home/b">
+            {/* <NavLink className="nav-link" activeClassName="active" to="/home/b">
                 The B Link
             </NavLink>
             <NavLink className="nav-link" activeClassName="active" to="/home/c">
                 And the See link
-            </NavLink>
+            </NavLink> */}
             <div className="dropdown-divider"></div>
             <div styleName="reviews">
                 <h5 className="pt-3 pb-1">Your Reviews</h5>
-                <a href="#">New York City</a>
+                {/* <a href="#">New York City</a>
                 <ul className="list-group list-group-flush pb-3">
                     <li className="list-group-item"><a href="#">Cras justo odio Cras justo odio Cras justo odio Cras justo odio</a></li>
                     <li className="list-group-item"><a href="#">Porta ac consectetur ac</a></li>
@@ -35,7 +35,8 @@ const SideNavBar = props => (
                     <li className="list-group-item"><a href="#">Cras justo odio</a></li>
                     <li className="list-group-item"><a href="#">Porta ac consectetur ac</a></li>
                     <li className="list-group-item"><a href="#">Vestibulum at eros</a></li>
-                </ul>
+                </ul> */}
+                <h3>No reviews yet</h3>
             </div>
         </div>
     </div>
