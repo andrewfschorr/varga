@@ -4,4 +4,15 @@
         padding-bottom: 0.25rem;
         font-size: 14px;
     }
+
+    .icon {
+        width: 19px;
+        height: 17px;
+        padding-left: 8px;
+        padding-top: 6px;
+
+        use {
+            fill: #fff;
+        }
+    }
 }

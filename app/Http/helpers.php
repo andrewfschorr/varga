@@ -9,7 +9,7 @@ function hawtHelper($path, $secure = null)
         if (ends_with($path, '.css')) {
             return new HtmlString('/css/dummy.css');
         }
-        return new HtmlString("//localhost:8080/{$path}");
+        return new HtmlString("https://localhost:8080/{$path}");
     } else {
         return app('url')->asset($path, $secure);
     }

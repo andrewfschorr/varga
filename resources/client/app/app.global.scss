@@ -1,2 +1,4 @@
 // because app.js isn't directly included on page, `--hot` wont load this style sheet :/
+$font-size-base: 0.85rem;
+
 @import "~bootstrap/scss/bootstrap";

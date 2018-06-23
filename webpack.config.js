@@ -73,8 +73,9 @@ module.exports = (env, options) => {
     return {
         devtool: isProduction ? 'none' : 'inline-cheap-source-map',
         devServer: {
+            https: true,
             hot: true,
-            publicPath: options.hot ? 'http://localhost:8080/' : '/', // hurr
+            publicPath: options.hot ? 'https://localhost:8080/' : '/', // hurr
             contentBase: path.resolve(__dirname, 'public'),
             headers: {
                 'Access-Control-Allow-Origin': '*',
@@ -90,6 +91,7 @@ module.exports = (env, options) => {
             // ],
             alias: {
                 client: path.resolve(__dirname, 'resources/client'),
+                utils: path.resolve(__dirname, 'resources/client/utils'),
                 app: path.resolve(__dirname, 'resources/client/app'),
                 components: path.resolve(__dirname, 'resources/client/components'),
             },
@@ -141,7 +143,7 @@ module.exports = (env, options) => {
         },
         output: {
             path: path.resolve(__dirname, 'public'),
-            publicPath: options.hot ? 'http://localhost:8080/' : '/',
+            publicPath: options.hot ? 'https://localhost:8080/' : '/',
             filename: 'js/[name].js',
             // hotUpdateChunkFilename: '[name].[hash].hot-update.js',
             // hotUpdateMainFilename: '[hash].hot-update.json',

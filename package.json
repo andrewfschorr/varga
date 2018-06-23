@@ -1,8 +1,8 @@
 {
     "private": true,
     "scripts": {
-        "dev": "webpack --mode development --watch",
-        "hot": "webpack-dev-server --mode development --hot"
+        "dev": "webpack --mode development --watch --bail",
+        "hot": "webpack-dev-server --mode development --hot --bail"
     },
     "devDependencies": {
         "babel-core": "^6.26.3",
@@ -39,8 +39,10 @@
         "react": "^16.4.0",
         "react-dom": "^16.4.0",
         "react-router-dom": "^4.3.1",
+        "react-stars": "^2.2.5",
         "reactstrap": "^6.1.0",
         "sass-loader": "^7.0.3",
-        "style-loader": "^0.21.0"
+        "style-loader": "^0.21.0",
+        "svg-injector": "^1.1.3"
     }
 }
