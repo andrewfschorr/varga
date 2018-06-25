@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import './styles/index.scss';
+
 class Profile extends Component {
     render() {
         return (
@@ -10,7 +12,10 @@ class Profile extends Component {
                         <form>
                             <div className="form-group">
                                 <label htmlFor="profilePhotoUpload">ProfilePhoto</label>
-                                <div className="input-group mb-3">
+                                <div styleName="avi-holder">
+                                    <img src="/images/avi.jpg" />
+                                </div>
+                                {/* <div className="input-group mb-3">
                                     <div className="input-group-prepend">
                                         <span className="input-group-text">Upload</span>
                                     </div>
@@ -26,7 +31,7 @@ class Profile extends Component {
                                             Choose file
                                         </label>
                                     </div>
-                                </div>
+                                </div> */}
                             </div>
 
                             <div className="form-group">
