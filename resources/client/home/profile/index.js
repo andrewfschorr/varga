@@ -3,6 +3,29 @@ import React, { Component } from 'react';
 import './styles/index.scss';
 
 class Profile extends Component {
+    constructor(props) {
+        super(props);
+        this.changeAvi = this.changeAvi.bind(this);
+        this.state = {
+            avi: '/images/avi.jpg',
+        };
+    }
+
+    changeAvi(e) {
+        const file = e.target.files[0];
+        const validTypes = ['image/gif', 'image/jpeg', 'image/png'];
+        if (e.target.files && validTypes.includes(file.type)) {
+            const reader = new FileReader();
+            const readerP = new Promise((resolve, reject) => {
+                reader.onloadend = (e) => {
+                    this.setState({avi: reader.result});
+                    console.log(e.value);
+                }
+            });
+            reader.readAsDataURL(file);
+        }
+    }
+
     render() {
         return (
             <div className="col-sm-9">
@@ -11,27 +34,24 @@ class Profile extends Component {
                     <div className="card-body">
                         <form>
                             <div className="form-group">
-                                <label htmlFor="profilePhotoUpload">ProfilePhoto</label>
+                                <label htmlFor="profilePhotoUpload">Profile Photo</label>
                                 <div styleName="avi-holder">
-                                    <img src="/images/avi.jpg" />
+                                    <img src={this.state.avi} alt="your avatar" />
                                 </div>
-                                {/* <div className="input-group mb-3">
-                                    <div className="input-group-prepend">
-                                        <span className="input-group-text">Upload</span>
-                                    </div>
-                                    <div className="custom-file">
-                                        <input
-                                            type="file"
-                                            className="custom-file-input"
-                                            id="profilePhotoUpload"
-                                        />
-                                        <label
-                                            className="custom-file-label"
-                                            htmlFor="profilePhotoUpload">
-                                            Choose file
-                                        </label>
-                                    </div>
-                                </div> */}
+                                <div className="input-group">
+                                    <label className="input-group-btn">
+                                        <span className="btn btn-primary mt-3">
+                                            Choose New Avatar{' '}
+                                            <input
+                                                onChange={this.changeAvi}
+                                                type="file"
+                                                id="avi"
+                                                name="avi"
+                                                style={{ display: 'none' }}
+                                            />
+                                        </span>
+                                    </label>
+                                </div>
                             </div>
 
                             <div className="form-group">
