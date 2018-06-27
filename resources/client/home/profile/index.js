@@ -59,7 +59,7 @@ class Profile extends Component {
             body: formData,
             credentials: 'same-origin',
             headers: {
-                'X-CSRF-TOKEN': DATA_BS['X-CSRF-TOKEN'],
+                'X-CSRF-TOKEN': window.DATA_BS['X-CSRF-TOKEN'],
                 // 'content-type': 'application/x-www-form-urlencoded',
             },
         });
