@@ -59,7 +59,6 @@ class Profile extends Component {
 
     saveProfile(e) {
         e.preventDefault();
-        console.log(this.state);
         const { username, about } = this.state;
         const data = { username, about };
         if (this.state.newAviFile) {
@@ -77,7 +76,14 @@ class Profile extends Component {
                 'X-CSRF-TOKEN': window.DATA_BS['X-CSRF-TOKEN'],
                 // 'content-type': 'application/x-www-form-urlencoded',
             },
-        });
+        })
+            .then(resp => resp.json())
+            .then(data => {
+                console.log(data);
+            })
+            .catch(err => {
+                console.log(err);
+            });
     }
 
     render() {
@@ -154,7 +160,9 @@ class Profile extends Component {
                                     onClick={this.saveProfile}>
                                     Save
                                 </button>
-                                <button className="btn btn-danger" onClick={this.resetState}>cancel</button>
+                                <button className="btn btn-danger" onClick={this.resetState}>
+                                    cancel
+                                </button>
                             </div>
                         </form>
                     </div>

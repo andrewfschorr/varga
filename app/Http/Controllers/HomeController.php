@@ -37,6 +37,7 @@ class HomeController extends Controller
         $newAviFile = $request->file('newAviFile');
         // regular laravel hasFile methods don't seem to work
         if ($newAviFile) {
+            // TODO, delete old avatar
             $s3 = \Storage::disk('s3');
             $s3->put('avi', $newAviFile);
             $updatedAvi = $newAviFile->hashName();
@@ -48,21 +49,30 @@ class HomeController extends Controller
             ]);
         }
 
-        if (isset($validator) && $validator->fails()) {
-            // return
+        if (true) {
+            return response()->json([
+                'message' => 'Duplicate or missing username'
+            ], 409);
         } else {
-            $user = \Auth::user();
-            if ($request->has('username')) {
-                \Log::debug(request('username'));
-                $user->username = request('username');
+            try {
+                $user = \Auth::user();
+                if ($request->has('username')) {
+                    \Log::debug(request('username'));
+                    $user->username = request('username');
+                }
+                if ($request->has('about')) {
+                    $user->about = request('about');
+                }
+                if (isset($updatedAvi)) {
+                    $user->avi = "https://s3.amazonaws.com/localotter/avi/$updatedAvi";
+                }
+                $user->save();
+            } catch (Exception $e) {
+                return response()->json('Error', 500);
             }
-            if ($request->has('about')) {
-                $user->about = request('about');
-            }
-            if ($updatedAvi) {
-                $user->avi = "https://s3.amazonaws.com/localotter/avi/$updatedAvi";
-            }
-            $user->save();
+            return response()->json([
+                'status' => 'OK',
+            ]);
         }
     }
 }
