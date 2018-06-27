@@ -14,9 +14,9 @@ class Profile extends Component {
 
     state = {
         avi: DATA_BS.user.avi,
-        username: DATA_BS.user.username,
+        username: DATA_BS.user.username || '',
         about: DATA_BS.user.about || '',
-    };
+    }
 
     changeAbout(e) {
         this.setState({ about: e.target.value });

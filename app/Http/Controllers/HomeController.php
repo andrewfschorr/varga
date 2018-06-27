@@ -38,6 +38,8 @@ class HomeController extends Controller
         if ($newAviFile) {
             \Log::debug($request->newAviFile->path());
             \Log::debug($request->newAviFile->extension());
+            $s3 = \Storage::disk('s3');
+            $s3->put('avi', $newAviFile);
         }
         \Log::debug($request->input('username'));
     }
