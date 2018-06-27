@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Validator;
 
 class HomeController extends Controller
 {
@@ -36,11 +37,32 @@ class HomeController extends Controller
         $newAviFile = $request->file('newAviFile');
         // regular laravel hasFile methods don't seem to work
         if ($newAviFile) {
-            \Log::debug($request->newAviFile->path());
-            \Log::debug($request->newAviFile->extension());
             $s3 = \Storage::disk('s3');
             $s3->put('avi', $newAviFile);
+            $updatedAvi = $newAviFile->hashName();
         }
-        \Log::debug($request->input('username'));
+
+        if (request('username') !== \Auth::user()->username) {
+            $validator = Validator::make($request->all(), [
+                'username' => 'required|unique:users',
+            ]);
+        }
+
+        if (isset($validator) && $validator->fails()) {
+            // return
+        } else {
+            $user = \Auth::user();
+            if ($request->has('username')) {
+                \Log::debug(request('username'));
+                $user->username = request('username');
+            }
+            if ($request->has('about')) {
+                $user->about = request('about');
+            }
+            if ($updatedAvi) {
+                $user->avi = "https://s3.amazonaws.com/localotter/avi/$updatedAvi";
+            }
+            $user->save();
+        }
     }
 }

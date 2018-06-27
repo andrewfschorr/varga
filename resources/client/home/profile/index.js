@@ -10,12 +10,28 @@ class Profile extends Component {
         this.changeUsername = this.changeUsername.bind(this);
         this.changeAbout = this.changeAbout.bind(this);
         this.saveProfile = this.saveProfile.bind(this);
+        this.resetState = this.resetState.bind(this);
     }
 
     state = {
-        avi: DATA_BS.user.avi,
-        username: DATA_BS.user.username || '',
-        about: DATA_BS.user.about || '',
+        avi: window.DATA_BS.user.avi,
+        username: window.DATA_BS.user.username || '',
+        about: window.DATA_BS.user.about || '',
+        initialState: {
+            avi: window.DATA_BS.user.avi,
+            username: window.DATA_BS.user.username || '',
+            about: window.DATA_BS.user.about || '',
+        },
+    };
+
+    resetState(e) {
+        e.preventDefault();
+        const originalState = {};
+        for (const [key, val] of Object.entries(this.state.initialState)) {
+            originalState[key] = val;
+        }
+
+        this.setState(originalState);
     }
 
     changeAbout(e) {
@@ -51,7 +67,6 @@ class Profile extends Component {
         }
         const formData = new FormData();
         for (const [key, val] of Object.entries(data)) {
-            console.log(key, val);
             formData.append(key, val);
         }
         fetch('/profile/update', {
@@ -139,7 +154,7 @@ class Profile extends Component {
                                     onClick={this.saveProfile}>
                                     Save
                                 </button>
-                                <button className="btn btn-danger">cancel</button>
+                                <button className="btn btn-danger" onClick={this.resetState}>cancel</button>
                             </div>
                         </form>
                     </div>
