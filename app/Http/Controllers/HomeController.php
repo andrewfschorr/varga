@@ -31,4 +31,14 @@ class HomeController extends Controller
             'dataBs' => $data,
         ]);
     }
+
+    public function updateProfile(Request $request) {
+        $newAviFile = $request->file('newAviFile');
+        // regular laravel hasFile methods don't seem to work
+        if ($newAviFile) {
+            \Log::debug($request->newAviFile->path());
+            \Log::debug($request->newAviFile->extension());
+        }
+        \Log::debug($request->input('username'));
+    }
 }

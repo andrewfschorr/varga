@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axois from 'axios';
 
 import './styles/index.scss';
 
@@ -8,6 +9,7 @@ class Profile extends Component {
         this.changeAvi = this.changeAvi.bind(this);
         this.changeUsername = this.changeUsername.bind(this);
         this.changeAbout = this.changeAbout.bind(this);
+        this.saveProfile = this.saveProfile.bind(this);
     }
 
     state = {
@@ -30,12 +32,37 @@ class Profile extends Component {
         if (e.target.files && validTypes.includes(file.type)) {
             const reader = new FileReader();
             const readerP = new Promise((resolve, reject) => {
-                reader.onloadend = e => {
-                    this.setState({ avi: reader.result });
-                };
+                reader.onloadend = resolve;
             });
             reader.readAsDataURL(file);
+            readerP.then(() => {
+                this.setState({ avi: reader.result, newAviFile: file });
+            });
         }
+    }
+
+    saveProfile(e) {
+        e.preventDefault();
+        console.log(this.state);
+        const { username, about } = this.state;
+        const data = { username, about };
+        if (this.state.newAviFile) {
+            data.newAviFile = this.state.newAviFile;
+        }
+        const formData = new FormData();
+        for (const [key, val] of Object.entries(data)) {
+            console.log(key, val);
+            formData.append(key, val);
+        }
+        fetch('/profile/update', {
+            method: 'POST',
+            body: formData,
+            credentials: 'same-origin',
+            headers: {
+                'X-CSRF-TOKEN': DATA_BS['X-CSRF-TOKEN'],
+                // 'content-type': 'application/x-www-form-urlencoded',
+            },
+        });
     }
 
     render() {
@@ -106,7 +133,10 @@ class Profile extends Component {
                                 </small>
                             </div> */}
                             <div className="d-flex">
-                                <button type="submit" className="btn btn-primary mr-auto">
+                                <button
+                                    type="submit"
+                                    className="btn btn-primary mr-auto"
+                                    onClick={this.saveProfile}>
                                     Save
                                 </button>
                                 <button className="btn btn-danger">cancel</button>
