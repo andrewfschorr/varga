@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink, Link, withRouter } from 'react-router-dom';
 import svgInjector from 'client/utils/svg-injector';
 
 import './styles/index.scss';
+
+// withRouter(SideNavBar);
+
+// withRouter(props => <SideNavBar {...props}/>);
 
 class SideNavBar extends Component {
     componentDidMount() {
@@ -42,7 +46,13 @@ class SideNavBar extends Component {
                         <li className="list-group-item"><a href="#">Vestibulum at eros</a></li>
                     </ul> */}
                         <p>No reviews yet, add your first one.</p>
-                        <Link to="/home/add-review" href="/home/add-review">
+                        <Link
+                            onClick={() => {
+                                if (this.props.location.pathname === '/home/add-review') {
+                                }
+                            }}
+                            to="/home/add-review"
+                            href="/home/add-review">
                             <button type="button" className="btn btn-info">
                                 Add a review
                                 <img
@@ -64,4 +74,4 @@ class SideNavBar extends Component {
 
 SideNavBar.propTypes = {};
 
-export default SideNavBar;
+export default withRouter(SideNavBar);

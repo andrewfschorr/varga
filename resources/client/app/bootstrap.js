@@ -10,3 +10,7 @@ if (token) {
 } else {
     console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
+
+if (DATA_BS.user && !DATA_BS.user.avi) {
+    DATA_BS.user.avi = '/images/avi.jpg';
+}

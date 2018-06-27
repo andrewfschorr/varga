@@ -12,3 +12,7 @@ php artisan migrate:refresh
 
 "jquery": "^3.3.1",
 "jquery-slim": "^3.0.0",
+
+php artisan make:seeder UsersTableSeeder
+php artisan migrate:refresh --seed
+

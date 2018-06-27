@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 
 class Account extends Component {
+    constructor(props) {
+        super(props);
+    }
+
     render() {
         return (
             <div className="col-sm-9">

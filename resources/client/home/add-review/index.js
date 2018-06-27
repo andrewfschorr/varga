@@ -19,7 +19,7 @@ class AddReview extends Component {
                                         type="text"
                                         className="form-control"
                                         id="inputPlaceName"
-                                        placeholder="Palace of Versailles"
+                                        placeholder="eg: Palace of Versailles"
                                     />
                                 </div>
                                 <div className="form-group col-md-6">
@@ -41,11 +41,11 @@ class AddReview extends Component {
                                 </small>
                             </div>
                             <div className="form-group">
-                                <p>Rating</p>
+                                <p className="mb-0">Rating</p>
                                 <ReactStars
                                     count={5}
-                                    onChange={(a, b, c) => {
-                                        console.log(a, b, c);
+                                    onChange={(newRating) => {
+                                        // console.log(newRating);
                                     }}
                                     size={56}
                                     color2="#ffd700"

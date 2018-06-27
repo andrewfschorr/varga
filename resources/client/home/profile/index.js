@@ -6,9 +6,22 @@ class Profile extends Component {
     constructor(props) {
         super(props);
         this.changeAvi = this.changeAvi.bind(this);
-        this.state = {
-            avi: '/images/avi.jpg',
-        };
+        this.changeUsername = this.changeUsername.bind(this);
+        this.changeAbout = this.changeAbout.bind(this);
+    }
+
+    state = {
+        avi: DATA_BS.user.avi,
+        username: DATA_BS.user.username,
+        about: DATA_BS.user.about || '',
+    };
+
+    changeAbout(e) {
+        this.setState({ about: e.target.value });
+    }
+
+    changeUsername(e) {
+        this.setState({ username: e.target.value });
     }
 
     changeAvi(e) {
@@ -17,10 +30,9 @@ class Profile extends Component {
         if (e.target.files && validTypes.includes(file.type)) {
             const reader = new FileReader();
             const readerP = new Promise((resolve, reject) => {
-                reader.onloadend = (e) => {
-                    this.setState({avi: reader.result});
-                    console.log(e.value);
-                }
+                reader.onloadend = e => {
+                    this.setState({ avi: reader.result });
+                };
             });
             reader.readAsDataURL(file);
         }
@@ -56,14 +68,26 @@ class Profile extends Component {
 
                             <div className="form-group">
                                 <label htmlFor="inputName">Username</label>
-                                <input type="text" className="form-control" id="name" />
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    id="name"
+                                    value={this.state.username}
+                                    onChange={this.changeUsername}
+                                />
                                 <small id="nameHelpBlock" className="form-text text-muted">
                                     This is the name that will be displayed on your reviews.
                                 </small>
                             </div>
                             <div className="form-group">
                                 <label htmlFor="aboutTextArea">About me</label>
-                                <textarea className="form-control" id="aboutTextArea" rows="3" />
+                                <textarea
+                                    className="form-control"
+                                    id="aboutTextArea"
+                                    rows="3"
+                                    onChange={this.changeAbout}
+                                    value={this.state.about}
+                                />
                                 <small id="aboutHelpBlock" className="form-text text-muted">
                                     Don't be shy, 3-5 sentences about you. Your interests and
                                     expertise.
@@ -81,10 +105,12 @@ class Profile extends Component {
                                     </p>
                                 </small>
                             </div> */}
-                            <br />
-                            <button type="submit" className="btn btn-primary">
-                                Save
-                            </button>
+                            <div className="d-flex">
+                                <button type="submit" className="btn btn-primary mr-auto">
+                                    Save
+                                </button>
+                                <button className="btn btn-danger">cancel</button>
+                            </div>
                         </form>
                     </div>
                 </div>
