@@ -16,6 +16,10 @@ class CreateLocationsTable extends Migration
         Schema::create('locations', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
+            $table->integer('location');
+            $table->integer('rating');
+            $table->longText('review')->nullable();
+            $table->string('name');
         });
     }
 

@@ -71,7 +71,7 @@ module.exports = (env, options) => {
     ];
 
     return {
-        devtool: isProduction ? 'none' : 'inline-cheap-source-map',
+        devtool: isProduction ? 'none' : 'source-map',
         devServer: {
             https: true,
             hot: true,

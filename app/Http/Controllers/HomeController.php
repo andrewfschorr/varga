@@ -86,4 +86,8 @@ class HomeController extends Controller
             ], 200);
         }
     }
+
+    public function addLocation(Request $request) {
+
+    }
 }

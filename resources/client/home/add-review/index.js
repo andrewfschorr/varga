@@ -4,13 +4,98 @@ import ReactStars from 'react-stars';
 
 import './styles/index.scss';
 
+const requiredFields = ['name', 'city', 'review', 'rating'];
+
 class AddReview extends Component {
+    constructor(props) {
+        super(props);
+        this.addReview = this.addReview.bind(this);
+        this.changeCity = this.changeCity.bind(this);
+        this.changeName = this.changeName.bind(this);
+        this.changeReview = this.changeReview.bind(this);
+        this.changeRating = this.changeRating.bind(this);
+        // this.generateErrors = this.generateErrors.bind(this);
+    }
+
+    state = {
+        name: null,
+        city: 'new york',
+        review: null,
+        rating: null,
+        errors: [],
+    };
+
+    addReview(e) {
+        e.preventDefault();
+        const data = {};
+        const errors = [];
+        for (let i = 0; i < requiredFields.length; i++) {
+            const field = requiredFields[i];
+            if (!this.state[field]) {
+                errors.push(field);
+            } else {
+                data[field] = this.state[field];
+            }
+        }
+        if (errors.length) {
+            this.setState({ errors });
+        } else {
+            fetch('/review/add', {
+                method: 'POST',
+                body: JSON.stringify(data),
+                credentials: 'same-origin',
+                headers: {
+                    'X-CSRF-TOKEN': window.DATA_BS['X-CSRF-TOKEN'],
+                },
+            })
+                .then(resp => resp.json())
+                .then(data => {
+                    console.log(data);
+                });
+        }
+    }
+
+    changeCity(e) {
+        this.setState({ city: e.target.value });
+    }
+
+    changeName(e) {
+        this.setState({ name: e.target.value });
+    }
+
+    changeReview(e) {
+        this.setState({ review: e.target.value });
+    }
+
+    changeRating(rating) {
+        this.setState({ rating });
+    }
+
+    generateErrors() {
+        <div className="alert alert-danger" role="alert">
+            {this.errors.map(errorField => (
+                <span>
+                    <strong>Uh oh... </strong>`there was a problem with the ${errorField} field`
+                </span>
+            ))};
+            <p>FUCK</p>
+        </div>;
+    }
+
     render() {
         return (
             <div className="col-sm-9">
                 <div className="card">
                     <div className="card-header">Add Review</div>
                     <div className="card-body">
+                        {this.state.errors.length ? (
+                            <div className="alert alert-danger" role="alert">
+                                {/* {this.state.errors.map(errorField => (
+                                    <span></span>
+                                ))} */}
+                                <strong>Uh noe... </strong> There were some with the following {this.state.errors.length === 1 ? 'field' : 'fields'} {this.state.errors.join(', ')}
+                            </div>
+                        ) : null}
                         <form>
                             <div className="form-row">
                                 <div className="form-group col-md-6">
@@ -20,22 +105,32 @@ class AddReview extends Component {
                                         className="form-control"
                                         id="inputPlaceName"
                                         placeholder="eg: Palace of Versailles"
+                                        onChange={this.changeName}
                                     />
                                 </div>
                                 <div className="form-group col-md-6">
                                     <label htmlFor="inputCity">City</label>
-                                    <select id="inputCity" className="form-control">
-                                        <option defaultValue>Choose...</option>
-                                        <option>New York</option>
-                                        <option>Barcelona</option>
-                                        <option>Paris</option>
-                                        <option>Seoul</option>
+                                    <select
+                                        id="inputCity"
+                                        className="form-control"
+                                        value={this.state.city}
+                                        onChange={this.changeCity}>
+                                        <option value="new york">New York</option>
+                                        <option value="barcelona">Barcelona</option>
+                                        <option value="paris">Paris</option>
+                                        <option value="seoul">Seoul</option>
                                     </select>
                                 </div>
                             </div>
                             <div className="form-group">
                                 <label htmlFor="aboutTextArea">Your review</label>
-                                <textarea className="form-control" id="aboutTextArea" rows="3" />
+                                <textarea
+                                    className="form-control"
+                                    id="aboutTextArea"
+                                    rows="3"
+                                    value={this.review}
+                                    onChange={this.changeReview}
+                                />
                                 <small id="aboutHelpBlock" className="form-text text-muted">
                                     What did you think? Why should travellers check this place out?
                                 </small>
@@ -44,23 +139,24 @@ class AddReview extends Component {
                                 <p className="mb-0">Rating</p>
                                 <ReactStars
                                     count={5}
-                                    onChange={(newRating) => {
-                                        // console.log(newRating);
-                                    }}
+                                    value={this.state.rating}
+                                    onChange={this.changeRating}
                                     size={56}
                                     color2="#ffd700"
                                 />
                             </div>
                             <div className="d-flex">
-                            <button type="submit" className="btn btn-primary mr-auto">
-                                Add
-                            </button>
+                                <button
+                                    type="submit"
+                                    className="btn btn-primary mr-auto"
+                                    onClick={this.addReview}>
+                                    Add
+                                </button>
 
-                            <button type="submit" className="btn btn-danger">
-                                Cancel
-                            </button>
+                                <button type="submit" className="btn btn-danger">
+                                    Cancel
+                                </button>
                             </div>
-
                         </form>
                     </div>
                 </div>
