@@ -49,8 +49,9 @@ class HomeController extends Controller
             ]);
         }
 
-        if (true) {
+        if (isset($validator) && $validator->fails()) {
             return response()->json([
+                'status' => 409,
                 'message' => 'Duplicate or missing username'
             ], 409);
         } else {
@@ -68,11 +69,15 @@ class HomeController extends Controller
                 }
                 $user->save();
             } catch (Exception $e) {
-                return response()->json('Error', 500);
+                return response()->json([
+                    'code' => 500,
+                    'message' => 'Error',
+                ], 500);
             }
             return response()->json([
-                'status' => 'OK',
-            ]);
+                'code' => 200,
+                'message' => 'ok'
+            ], 200);
         }
     }
 }

@@ -17,6 +17,8 @@ class Profile extends Component {
         avi: window.DATA_BS.user.avi,
         username: window.DATA_BS.user.username || '',
         about: window.DATA_BS.user.about || '',
+        alert: null,
+        alertText: null,
         initialState: {
             avi: window.DATA_BS.user.avi,
             username: window.DATA_BS.user.username || '',
@@ -31,7 +33,7 @@ class Profile extends Component {
             originalState[key] = val;
         }
 
-        this.setState(originalState);
+        this.setState(Object.assign(originalState, {alert: null, alertText: null }));
     }
 
     changeAbout(e) {
@@ -74,21 +76,56 @@ class Profile extends Component {
             credentials: 'same-origin',
             headers: {
                 'X-CSRF-TOKEN': window.DATA_BS['X-CSRF-TOKEN'],
-                // 'content-type': 'application/x-www-form-urlencoded',
             },
         })
-            .then(resp => resp.json())
+            .then(resp => {
+                if (resp.status === 200) {
+                    return resp.json();
+                }
+                if (resp.status === 409) {
+                    throw new Error('Username taken');
+                } else {
+                    throw new Error('Something got messed up');
+                }
+            })
             .then(data => {
-                console.log(data);
+                if (data.code === 200) {
+                    this.setState({
+                        alert: 'success',
+                        alertText: 'Your profile has been updated.',
+                    });
+                }
             })
             .catch(err => {
-                console.log(err);
+                this.setState({
+                    alert: 'success',
+                    alertText: "Something didn't work.",
+                });
             });
     }
 
     render() {
+        let alertText;
+        if (this.state.alert === 'success') {
+            alertText = (
+                <span>
+                    <strong>Success!</strong> {this.state.alertText}
+                </span>
+            );
+        } else if (this.state.alert === 'danger') {
+            alertText = (
+                <span>
+                    <strong>Uh oh...</strong> {this.state.alertText}
+                </span>
+            );
+        }
         return (
             <div className="col-sm-9">
+                {this.state.alert ? (
+                    <div className={`alert alert-${this.state.alert}`} role="alert">
+                        {alertText}
+                    </div>
+                ) : null}
                 <div className="card">
                     <div className="card-header">Profile</div>
                     <div className="card-body">
