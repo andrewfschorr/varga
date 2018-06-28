@@ -51,13 +51,16 @@ class AddReview extends Component {
                                     color2="#ffd700"
                                 />
                             </div>
-                            <button type="submit" className="btn btn-primary">
+                            <div className="d-flex">
+                            <button type="submit" className="btn btn-primary mr-auto">
                                 Add
                             </button>
 
-                            <button type="submit" className="btn btn-danger ml-2">
+                            <button type="submit" className="btn btn-danger">
                                 Cancel
                             </button>
+                            </div>
+
                         </form>
                     </div>
                 </div>

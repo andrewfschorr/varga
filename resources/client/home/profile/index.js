@@ -19,21 +19,12 @@ class Profile extends Component {
         about: window.DATA_BS.user.about || '',
         alert: null,
         alertText: null,
-        initialState: {
-            avi: window.DATA_BS.user.avi,
-            username: window.DATA_BS.user.username || '',
-            about: window.DATA_BS.user.about || '',
-        },
     };
 
     resetState(e) {
+        const cancel = window.confirm('Are you sure you want to cancel? You will lose any edits.')
+        if (cancel) window.reload(); // TODO meh
         e.preventDefault();
-        const originalState = {};
-        for (const [key, val] of Object.entries(this.state.initialState)) {
-            originalState[key] = val;
-        }
-
-        this.setState(Object.assign(originalState, {alert: null, alertText: null }));
     }
 
     changeAbout(e) {
