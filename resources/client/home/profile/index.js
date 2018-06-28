@@ -98,7 +98,7 @@ class Profile extends Component {
             })
             .catch(err => {
                 this.setState({
-                    alert: 'success',
+                    alert: 'danger',
                     alertText: "Something didn't work.",
                 });
             });

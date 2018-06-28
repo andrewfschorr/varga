@@ -34,11 +34,19 @@ class HomeController extends Controller
     }
 
     public function updateProfile(Request $request) {
+        $user = \Auth::user();
         $newAviFile = $request->file('newAviFile');
         // regular laravel hasFile methods don't seem to work
         if ($newAviFile) {
-            // TODO, delete old avatar
             $s3 = \Storage::disk('s3');
+            if ($user->avi) {
+                // TODO meh this is britle
+                $deletePath = explode('localotter/', $user->avi);
+                if ($deletePath[1]) {
+                    $s3->delete($deletePath[1]);
+                }
+            }
+
             $s3->put('avi', $newAviFile);
             $updatedAvi = $newAviFile->hashName();
         }
@@ -56,9 +64,7 @@ class HomeController extends Controller
             ], 409);
         } else {
             try {
-                $user = \Auth::user();
                 if ($request->has('username')) {
-                    \Log::debug(request('username'));
                     $user->username = request('username');
                 }
                 if ($request->has('about')) {
