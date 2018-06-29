@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Review;
 use Validator;
 
 class HomeController extends Controller
@@ -87,7 +88,14 @@ class HomeController extends Controller
         }
     }
 
-    public function addLocation(Request $request) {
+    public function addReview(Request $request) {
 
+        // \Log::debug($request->input('name'));
+        Review::create([
+            'location' => request('location'),
+            'name' => request('name'),
+            'rating' => request('rating'),
+            'user_id' => auth()->id(),
+        ]);
     }
 }

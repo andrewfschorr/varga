@@ -4,13 +4,13 @@ import ReactStars from 'react-stars';
 
 import './styles/index.scss';
 
-const requiredFields = ['name', 'city', 'review', 'rating'];
+const requiredFields = ['name', 'location', 'review', 'rating'];
 
 class AddReview extends Component {
     constructor(props) {
         super(props);
         this.addReview = this.addReview.bind(this);
-        this.changeCity = this.changeCity.bind(this);
+        this.changeLocation = this.changeLocation.bind(this);
         this.changeName = this.changeName.bind(this);
         this.changeReview = this.changeReview.bind(this);
         this.changeRating = this.changeRating.bind(this);
@@ -19,7 +19,7 @@ class AddReview extends Component {
 
     state = {
         name: null,
-        city: 'new york',
+        location: 'new york',
         review: null,
         rating: null,
         errors: [],
@@ -46,6 +46,7 @@ class AddReview extends Component {
                 credentials: 'same-origin',
                 headers: {
                     'X-CSRF-TOKEN': window.DATA_BS['X-CSRF-TOKEN'],
+                    'Content-Type': 'application/json',
                 },
             })
                 .then(resp => resp.json())
@@ -55,7 +56,7 @@ class AddReview extends Component {
         }
     }
 
-    changeCity(e) {
+    changeLocation(e) {
         this.setState({ city: e.target.value });
     }
 
@@ -78,7 +79,6 @@ class AddReview extends Component {
                     <strong>Uh oh... </strong>`there was a problem with the ${errorField} field`
                 </span>
             ))};
-            <p>FUCK</p>
         </div>;
     }
 
@@ -109,12 +109,12 @@ class AddReview extends Component {
                                     />
                                 </div>
                                 <div className="form-group col-md-6">
-                                    <label htmlFor="inputCity">City</label>
+                                    <label htmlFor="inputLocation">City</label>
                                     <select
-                                        id="inputCity"
+                                        id="inputLocation"
                                         className="form-control"
-                                        value={this.state.city}
-                                        onChange={this.changeCity}>
+                                        value={this.state.location}
+                                        onChange={this.changeLocation}>
                                         <option value="new york">New York</option>
                                         <option value="barcelona">Barcelona</option>
                                         <option value="paris">Paris</option>

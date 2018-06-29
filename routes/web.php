@@ -23,3 +23,4 @@ Auth::routes();
 Route::redirect('/home', '/home/profile', 301);
 Route::get('/home/{all}', 'HomeController@index')->name('home');
 Route::post('/profile/update', 'HomeController@updateProfile');
+Route::post('/review/add', 'HomeController@addReview');
